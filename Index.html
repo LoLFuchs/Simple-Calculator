@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple-Calculator</title>
+    <link rel="stylesheet" href="C:\Users\domin\OneDrive\Desktop\wichtig\Programieren\VCS\Calculator\style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+    <h1> Simple-Calculator</h1>
+    <br>
+    <div class="row" style="display: flex; justify-content: center;">
+        <div class="col-3"> 
+            <div class="card">
+                <div class="card-body">
+                    <h2 id="Y">/</h2><h2 id="Operator">/</h2><h2 id="X">/</h2>
+                </div>
+            </div>
+        </div>   
+    </div>
+  
+
+        
+    
+    <br>
+  <div style="margin-top: 100px;">
+      <div class="row" style="display: flex; justify-content: center;margin-top: 40px;">  <!-- 1 Row-->
+            <div class="col-1"><button type="button" onclick = "set_Y(1)" class="btn btn-primary btn-lg">1</button></div>
+            <div class="col-1"><button type="button" onclick = "set_Y(2)" class="btn btn-primary btn-lg">2</button></div>
+            <div class="col-1"><button type="button" onclick = "set_Y(3)" class="btn btn-primary btn-lg">3</button></div>
+            <div class="col-1"><button type="button" onclick = "clearCach()" class="btn btn-secondary btn-lg">C</button></div>
+      </div>
+       <div class="row" style="display: flex; justify-content: center;margin-top: 40px;">  <!-- 2 Row-->
+            <div class="col-1"><button type="button" onclick = "set_Y(4)" class="btn btn-primary btn-lg">4</button></div>
+            <div class="col-1"><button type="button" onclick = "set_Y(5)" class="btn btn-primary btn-lg">5</button></div>
+            <div class="col-1"><button type="button" onclick = "set_Y(6)" class="btn btn-primary btn-lg">6</button></div>
+            <div class="col-1"><button type="button" onclick = "set_Op('Plus')" class="btn btn-secondary btn-lg">+</button></div>
+      </div>
+      <div class="row" style="display: flex; justify-content: center;margin-top: 40px;">  <!-- 3 Row-->
+            <div class="col-1"><button type="button" onclick = "set_Y(7)" class="btn btn-primary btn-lg">7</button></div>
+            <div class="col-1"><button type="button" onclick = "set_Y(8)" class="btn btn-primary btn-lg">8</button></div>
+            <div class="col-1"><button type="button" onclick = "set_Y(9)" class="btn btn-primary btn-lg">9</button></div>
+            <div class="col-1"><button type="button" onclick = "set_Op('Minus')" class="btn btn-secondary btn-lg">-</button></div>
+      </div>
+      <div class="row" style="display: flex; justify-content: center;margin-top: 40px;">  <!-- 4 Row-->
+            <div class="col-1"><button type="button" onclick = "set_Y(0)" class="btn btn-primary btn-lg">0</button></div>
+            <div class="col-1"><button type="button" onclick = "set_Op('Divid')" class="btn btn-secondary btn-lg">:</button> </div>
+            <div class="col-1"><button type="button" onclick = "set_Op('Multi')" class="btn btn-secondary btn-lg">*</button></div>
+            <div class="col-1"><button type="button" onclick = "calc()" class="btn btn-secondary btn-lg">=</button></div>
+      </div>
+ </div> 
+    <script>   // y = first number ; x = second number
+     x = 0 
+     y = 0
+     Op = "+"
+     isY = false 
+     isOp = false
+
+     function set_Y(para_Y) { //Set Numbers (both)
+
+       if (isOp == false && isY == false  || isOp == false && isY == true) {
+        y = para_Y
+        console.log("Y = " + y)
+        document.getElementById("Y").innerHTML = y
+        isY = true
+        }
+      else if (isOp == true && isY == true) {
+        x = para_Y
+        console.log("X = " + x)
+        document.getElementById("X").innerHTML = x
+      }
+    } 
+
+    function set_Op(para_Op) { //set Operator
+        isOp = true
+        
+        if (para_Op == "Plus"){ 
+            document.getElementById("Operator").innerHTML = '+'
+            Op = "+"
+        }
+        else if (para_Op == "Minus") { 
+            document.getElementById("Operator").innerHTML = '-'
+            Op = "-"
+        }
+        else if (para_Op == "Multi") { 
+            document.getElementById("Operator").innerHTML = '*'
+            Op = "*"
+        }
+        else if (para_Op == "Divid") { 
+            document.getElementById("Operator").innerHTML = ':'
+            Op = ":"
+        }
+        console.log("Operator = " + Op)
+      
+    }
+
+    function clearCach() { //clear the Cach
+        x = 0
+        y = 0 
+        isY = false
+        isOp = false
+        document.getElementById("X").innerHTML = "/"
+        document.getElementById("Y").innerHTML = "/"
+        document.getElementById("Operator").innerHTML = "/"
+    }
+
+    function calc() { // Calculation
+        if (Op == "+") {
+            End = y + x
+            document.getElementById("Y").innerHTML = End
+            document.getElementById("Operator").innerHTML = "/"
+            document.getElementById("X").innerHTML = "/"
+            
+        }
+        else if (Op == "-") {
+            End = y - x
+            document.getElementById("Y").innerHTML = End
+            document.getElementById("Operator").innerHTML = "/"
+            document.getElementById("X").innerHTML = "/"
+            
+        }
+        else if (Op == "*") {
+            End = y * x
+            document.getElementById("Y").innerHTML = End
+            document.getElementById("Operator").innerHTML = "/"
+            document.getElementById("X").innerHTML = "/"
+            
+        }
+        else if (Op == ":") {
+            End = y / x
+            document.getElementById("Y").innerHTML = End
+            document.getElementById("Operator").innerHTML = "/"
+            document.getElementById("X").innerHTML = "/"
+            
+        }
+        y = End
+    }
+    </script>
+</body>
+</html>
